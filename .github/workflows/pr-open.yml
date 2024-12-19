@@ -35,7 +35,6 @@ jobs:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
     with:
-      oc_server: ${{ secrets.OC_SERVER }}
       triggers: ( 'frontend/' 'migrations/' 'charts/')
       db_user: app-${{github.event.number}}
       params: --set global.secrets.persist=false
