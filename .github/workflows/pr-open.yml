@@ -31,9 +31,11 @@ jobs:
     name: Deploys (${{ github.event.number }})
     needs: [builds]
     uses: ./.github/workflows/.deployer.yml
-    secrets: inherit
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
     with:
-      oc_server: https://api.silver.devops.gov.bc.ca:6443
+      oc_server: ${{ secrets.OC_SERVER }}
       triggers: ( 'frontend/' 'migrations/' 'charts/')
       db_user: app-${{github.event.number}}
       params: --set global.secrets.persist=false
