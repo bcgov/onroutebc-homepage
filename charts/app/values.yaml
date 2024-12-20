@@ -160,4 +160,3 @@ bitnamipg:
       limits:
         cpu: 150m
         memory: 250Mi
-
