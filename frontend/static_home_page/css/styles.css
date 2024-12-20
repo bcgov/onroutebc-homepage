@@ -52,6 +52,14 @@
     --bc-disabled-grey: #B5C0CF;
     --bc-footer-grey: #4B5E7E;
     --fade-top: #F1F1F100;
+    --bc-messages-red-text: #A12722;
+    --bc-messages-red-background: #F2DEDE;
+    --bc-messages-gold-text: #6C4A00;
+    --bc-messages-gold-background: #F9F1C6;
+    --bc-messages-blue-background: #D9EAF7;
+    --bc-messages-green-text: #2D4822;
+    --bc-messages-green-background: #DFF0D8;
+
 
     /* Sizing */
     --4: 4px;
@@ -116,7 +124,7 @@ h3 {
     font-weight: bold;
     text-decoration: none;
     color: var(--bc-primary-blue);
-    border: 2px solid;
+    border: 3px solid;
     border-radius: var(--4);
     border-color: var(--bc-primary-blue);
 }
@@ -296,6 +304,46 @@ h3 {
     }
    }
 
+/* Notification */
+.notification__header--red {
+    background-color: var(--bc-messages-red-text);
+}
+
+.notification__content--red {
+    background-color: var(--bc-messages-red-background);
+}
+
+.notification__header--blue {
+    background-color: var(--bc-background-blue);
+}
+
+.notification__content--blue {
+    background-color: var(--bc-messages-blue-background);
+}
+
+.notification__header--green {
+    background-color: var(--bc-messages-green-text);
+}
+
+.notification__content--green {
+    background-color: var(--bc-messages-green-background);
+}
+
+.notification__header--gold {
+    background-color: var(--bc-messages-gold-text);
+}
+
+.notification__content--gold {
+    background-color: var(--bc-messages-gold-background);
+}
+
+.notification__content p {
+    font-size: var(--24);
+    line-height: var(--36);
+    /* allow "\n" for line break and "\t" for tabs */
+    white-space: pre-wrap;
+}
+
 /* Permit Overview */
 .permit-overview__content {
     border-bottom: 1px solid var(--bc-border-grey);
@@ -305,7 +353,7 @@ h3 {
     margin-bottom: var(--16);
 }
 
-.term-oversize p {
+.term-oversize .btn {
     margin-bottom: var(--16);
 }
 
@@ -370,6 +418,10 @@ h3 {
 
 .contact__value {
     display: block;
+}
+
+.contact__value:not(:first-child) {
+    margin-bottom: var(--16);
 }
 
 @media screen and (min-width: 576px) {

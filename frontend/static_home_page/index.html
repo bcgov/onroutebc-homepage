@@ -57,6 +57,9 @@
     />
     <link rel="preload" as="image" href="./img/hero-sm.webp" />
 
+    <!-- Notification Script -->
+    <script src="./notification.js" defer></script>
+
     <title>onRouteBC - Home</title>
   </head>
   <body>
@@ -74,10 +77,10 @@
     <section class="hero">
       <div class="container">
         <div class="hero__box">
-          <h1 class="hero__heading">onroutebc.gov.bc.ca</h1>
+          <h1 class="hero__heading">onRouteBC.gov.bc.ca</h1>
           <p class="hero__subheading">
             Online permitting and routing for commercial trucking in British
-            Columbia
+            Columbia.
           </p>
         </div>
       </div>
@@ -101,6 +104,8 @@
         <div class="container">
           <div class="main__flex">
             <div class="main__left">
+              <!-- Notification -->
+              <section id="notification"></section>
               <!-- Permit Overview -->
               <section class="permit-overview box">
                 <div class="box-header">
@@ -108,25 +113,21 @@
                 </div>
                 <div class="permit-overview__content box-content">
                   <p>
-                    The Ministry of Transportation and Infrastructure's
+                    The Ministry of Transportation and Infrastructure’s
                     commercial vehicle permitting system is transitioning to a
                     new system called onRouteBC. The first phase of onRouteBC
-                    includes support for Term Oversize permits, payable by
-                    credit card only. Over time onRouteBC will offer more permit
-                    types and payment methods. During transition, permits that
-                    are not available in onRouteBC continue to be available from
-                    the existing system by contacting the Provincial Permit
-                    Center.
+                    includes support for Term Oversize and Term Overweight
+                    permits, payable by credit card only. Over time onRouteBC
+                    will offer more permit types and payment methods. During
+                    transition, permits that are not available in onRouteBC
+                    continue to be available from the existing system by
+                    contacting the Provincial Permit Center.
                   </p>
                 </div>
                 <div>
                   <div class="box-flex">
                     <section class="box-content term-oversize">
-                      <h3>Term Oversize Permits Only</h3>
-                      <p>
-                        Login with your Business BCeID and pay online with your
-                        credit card.
-                      </p>
+                      <h3>Term Oversize and Term Overweight Permits</h3>
                       <a
                         role="button"
                         class="btn btn--blue"
@@ -134,6 +135,10 @@
                       >
                         Log into onRouteBC
                       </a>
+                      <p>
+                        Login with your Business BCeID and pay online with your
+                        credit card.
+                      </p>
                     </section>
                     <section class="box-content other-permits">
                       <h3>Other permit types and payment methods</h3>
@@ -256,7 +261,7 @@
                       <p class="contact__label">Hours</p>
                       <div class="contact__row">
                         <p>
-                          Hours 6am to 10pm PDT (Apr. - Oct.)
+                          6am to 10pm PDT (Apr. - Oct.)
                           <br />5am to 9pm PST (Nov. - Mar.) <br />Seven days a
                           week
                         </p>
@@ -306,20 +311,20 @@
                   </p>
                   <p>
                     <a
-                      href="https://www2.gov.bc.ca/gov/content/transportation/driving-and-cycling/traveller-information/seasonal/winter-driving/commercial"
-                      class="link"
-                      target="_blank"
-                      id=""
-                      >Winter Driving in British Columbia</a
-                    >
-                  </p>
-                  <p>
-                    <a
                       href="https://www.th.gov.bc.ca/bchighways/loadrestrictions/loadrestrictions.htm"
                       class="link"
                       target="_blank"
                       id=""
                       >Seasonal Load Restrictions</a
+                    >
+                  </p>
+                  <p>
+                    <a
+                      href="https://www.drivebc.ca/cvrp/?c=hct"
+                      class="link"
+                      target="_blank"
+                      id=""
+                      >Height Clearance Tool</a
                     >
                   </p>
                 </div>
