@@ -110,6 +110,8 @@ frontend:
   ingress:
     annotations:
       route.openshift.io/termination: "edge"
+    tls:
+      - {}
   pdb:
     enabled: false # enable it in PRODUCTION for having pod disruption budget.
     minAvailable: 1 # the minimum number of pods that must be available during the disruption budget.
