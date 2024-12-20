@@ -70,17 +70,6 @@ on:
         required: true
 
 jobs:
-  deployer-db:
-    name: Database
-    uses: ./.github/workflows/.deployer-db.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-    with:
-      enabled: false
-      environment: ${{ inputs.environment }}
-      triggers: ${{ inputs.triggers }}
-
   deployer:
     name: Stack
     environment: ${{ inputs.environment }}
