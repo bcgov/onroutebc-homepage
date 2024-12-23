@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        package: [backend, frontend, migrations]
+        package: [ frontend ]
     timeout-minutes: 10
     steps:
       - uses: bcgov-nr/action-builder-ghcr@v2.3.0
@@ -35,21 +35,14 @@ jobs:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
     with:
-      triggers: ('backend/' 'frontend/' 'migrations/' 'charts/')
+      triggers: ( 'frontend/' '.github/' 'charts/')
       db_user: app-${{github.event.number}}
       params: --set global.secrets.persist=false
 
-  tests:
-    name: Tests (${{ github.event.number }})
-    if: needs.deploys.outputs.triggered == 'true'
-    needs: [deploys]
-    uses: ./.github/workflows/.tests.yml
-    with:
-      target: ${{ github.event.number }}
 
   results:
     name: PR Results
-    needs: [builds, deploys, tests]
+    needs: [builds, deploys]
     if: always()
     runs-on: ubuntu-24.04
     steps:

@@ -21,13 +21,13 @@ global:
   #-- domain of the application, it is required, apps.silver.devops.gov.bc.ca for silver cluster and apps.devops.gov.bc.ca for gold cluster
   domain: "apps.silver.devops.gov.bc.ca" # it is apps.gold.devops.gov.bc.ca for gold cluster
   #-- the database Alias gives a nice way to switch to different databases, crunchy, patroni ... etc.
-  #databaseAlias: bitnamipg #uncomment when using bitnami pg and comment below.
-  databaseAlias: postgres-crunchy #uncomment when using crunchy and comment above.
+  databaseAlias: bitnamipg #uncomment when using bitnami pg and comment below.
+    #databaseAlias: postgres-crunchy #uncomment when using crunchy and comment above.
 
 #-- the components of the application, backend.
 backend:
   #-- enable or disable backend
-  enabled: true
+  enabled: false
   #-- the deployment strategy, can be "Recreate" or "RollingUpdate"
   deploymentStrategy: Recreate
   #-- autoscaling for the component. it is optional and is an object.
@@ -110,15 +110,17 @@ frontend:
   ingress:
     annotations:
       route.openshift.io/termination: "edge"
+    tls:
+      - {}
   pdb:
     enabled: false # enable it in PRODUCTION for having pod disruption budget.
     minAvailable: 1 # the minimum number of pods that must be available during the disruption budget.
 
 crunchy:
-  enabled: true # make this false and bitnami-pg true to switch from crunchy to bitnami single postgis.
+  enabled: false # make this false and bitnami-pg true to switch from crunchy to bitnami single postgis.
 
 bitnamipg:
-  enabled: false
+  enabled: true
   image:
     registry: ghcr.io
     repository: bcgov/nr-containers/bitnami/postgresql
@@ -160,4 +162,3 @@ bitnamipg:
       limits:
         cpu: 150m
         memory: 250Mi
-

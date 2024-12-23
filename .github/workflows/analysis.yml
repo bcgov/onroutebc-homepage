@@ -33,10 +33,8 @@ jobs:
           - 5432:5432
     strategy:
       matrix:
-        dir: [backend, frontend]
+        dir: [frontend]
         include:
-          - dir: backend
-            token: SONAR_TOKEN_BACKEND
           - dir: frontend
             token: SONAR_TOKEN_FRONTEND
     steps:
