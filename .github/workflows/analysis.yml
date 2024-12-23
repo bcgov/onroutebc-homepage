@@ -36,7 +36,7 @@ jobs:
         dir: [frontend]
         include:
           - dir: frontend
-            token: ${{secrets.SONAR_TOKEN_FRONTEND}}
+            token: SONAR_TOKEN_FRONTEND
     steps:
       - uses: bcgov-nr/action-test-and-analyse@v1.2.1
         with:
