@@ -7,6 +7,10 @@ services:
     environment:
       PORT: 3000
       LOG_LEVEL: info
+      DASHBOARD: onroutebc-prod-frontend.apps.silver.devops.gov.bc.ca
     ports: ["3000:3000"]
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
+# not supported in older versions   
+#   post_start:
+#      command: sed -i "s/{{HOSTNAME}}/${HOSTNAME}/g" /var/www/onroute/index.html
