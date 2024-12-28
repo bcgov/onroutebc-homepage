@@ -1,9 +1,17 @@
-name: Manual Trigger Workflow
+name: Manual Deploy Workflow
 
 # Configure Manual Trigger
 on:
   workflow_dispatch:
-
+    inputs:
+      target:
+        description: 'Test or prod'
+        required: true
+        type: number      
 jobs:
-  build:
+  build-docker:
+    name: Build docker
     runs-on: ubuntu-latest
+
+
+
