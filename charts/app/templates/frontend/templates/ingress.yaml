@@ -24,4 +24,14 @@ spec:
                 name: {{ include "frontend.fullname" . }}
                 port:
                   number: 80
+    - host: onroutebc.tran.gov.bc.ca 
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ include "frontend.fullname" . }}
+                port:
+                  number: 80
 {{- end }}
