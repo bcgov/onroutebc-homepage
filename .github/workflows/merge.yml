@@ -54,7 +54,7 @@ jobs:
   
   promote-test:
     name: Promote Images
-    needs: [deploy-prod, vars]
+    needs: [deploy-test, vars]
     runs-on: ubuntu-24.04
     permissions:
       packages: write
