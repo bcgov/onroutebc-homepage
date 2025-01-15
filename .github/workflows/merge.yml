@@ -13,8 +13,8 @@ on:
       tag:
         description: "Image tag set to deploy; e.g. PR number or prod"
         type: string
-        required: false
-        default: ''
+        required: true
+        default: 'test'
 
 concurrency:
   # Do not interrupt previous workflows
