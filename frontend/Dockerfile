@@ -7,8 +7,8 @@ FROM caddy:2.8.4-alpine
 ARG DASHBOARD=onroutebc-prod-frontend.apps.silver.devops.gov.bc.ca
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY static_home_page /var/www/onroute
-# Replace placeholder for host name in source index.html
-RUN echo "DASHBOARD=\$DASHBOARD"
+# Replace placeholder for dashboard  in source index.html
+#RUN echo "DASHBOARD=\$DASHBOARD"
 RUN sed -i "s/{{DASHBOARD}}/${DASHBOARD}/g" /var/www/onroute/index.html 
 RUN caddy fmt /etc/caddy/Caddyfile
 
