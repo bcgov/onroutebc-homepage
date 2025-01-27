@@ -5,7 +5,7 @@ const notification = {
   // "red" | "blue" | "green" | "gold"
   color: "red",
   // "Your header text here"
-  header: "Important Notice",
+  header: "Important Notice ",
   // "Your content text here" (tip: insert "\n" for new line and "\t" for tabs)
   content: "onRouteBC is undergoing scheduled maintenance on [Date] from [Start Time] to [End Time]. During this period, you may experience temporary disruptions. We apologize for any inconvenience and appreciate your understanding."
 };
