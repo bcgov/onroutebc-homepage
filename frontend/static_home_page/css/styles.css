@@ -440,6 +440,11 @@ h3 {
     margin-bottom: var(--16);
 }
 
+/* Videos */
+.videos p {
+    margin-bottom: var(--16);
+}
+
 /* Routes */
 .routes p:not(:last-child) {
     margin-bottom: var(--16);
