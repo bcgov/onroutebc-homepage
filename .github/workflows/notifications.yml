@@ -55,7 +55,7 @@ jobs:
       - uses: simbo/msteams-message-card-action@latest
         if: ${{ vars.MS_TEAMS_WEBHOOK_URI }}
         with:
-          webhook: ${{ vars.MS_TEAMS_WEBHOOK_URI != null }}
+          webhook: ${{ vars.MS_TEAMS_WEBHOOK_URI }}
           title: "${{github.event.workflow_run.head_commit.message}}" 
           message: "${{github.event.workflow_run.head_commit.message}}" 
           color: 'dark orange'
