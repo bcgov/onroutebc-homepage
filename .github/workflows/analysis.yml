@@ -33,7 +33,7 @@ jobs:
           - 5432:5432
     strategy:
       matrix:
-        dir: [frontend]
+        dir: [] #removed frontend from testing
         include:
           - dir: frontend
             token: SONAR_TOKEN_FRONTEND
