@@ -1,13 +1,13 @@
 // Notification
 const notification = {
   // true | false (no quotation marks)
-  show: false,
+  show: true,
   // "red" | "blue" | "green" | "gold"
   color: "red",
   // "Your header text here"
   header: "Important Notice ",
   // "Your content text here" (tip: insert "\n" for new line and "\t" for tabs)
-  content: "onRouteBC is undergoing scheduled maintenance on April 16, 2025 from 9:00 am to 11:00 PM PDT. During this period, you may experience temporary disruptions. We apologize for any inconvenience and appreciate your understanding."
+  content: "onRouteBC is undergoing scheduled maintenance on April 24, 2025 from 9:00 am to 11:00 PM PDT. During this period, you may experience temporary disruptions. We apologize for any inconvenience and appreciate your understanding."
 };
 
 
