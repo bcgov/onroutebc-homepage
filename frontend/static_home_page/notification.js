@@ -1,33 +1,31 @@
-// Notification
-const notification = {
-  // true | false (no quotation marks)
-  show: false,
-  // "red" | "blue" | "green" | "gold"
-  color: "red",
-  // "Your header text here"
-  header: "Important Notice ",
-  // "Your content text here" (tip: insert "\n" for new line and "\t" for tabs)
-  content: "onRouteBC is undergoing scheduled maintenance on April 24, 2025 from 9:00 am to 11:00 PM PDT. During this period, you may experience temporary disruptions. We apologize for any inconvenience and appreciate your understanding."
-};
+fetch('http://localhost:5003/outage-notification')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to fetch outage notification');
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (!data.title || !data.message) return;
 
+    const notificationContainer = document.querySelector("#notification");
+    if (!notificationContainer) return;
 
-// Script
-const notificationContainer = document.querySelector("#notification");
+    const notificationSection = document.createElement("div");
+    notificationSection.className = "box notification";
 
-const notificationSection = document.createElement("div");
-notificationSection.className = "box notification"
+    const header = document.createElement("div");
+    header.className = "box-header notification__header notification__header--red";
+    header.innerHTML = `<h2>${data.title}</h2>`;
 
-const header = document.createElement("div");
-header.className = `box-header notification__header notification__header--${notification.color}`;
-header.innerHTML = `<h2>${notification.header}</h2>`;
+    const content = document.createElement("div");
+    content.className = "box-content notification__content notification__content--red";
+    content.innerHTML = `<p>${data.message}</p>`;
 
-const content = document.createElement("div");
-content.className = `box-content notification__content notification__content--${notification.color}`;
-content.innerHTML = `<p>${notification.content}</p>`;
-
-notificationSection.appendChild(header)
-notificationSection.appendChild(content)
-
-if (notificationContainer && notification.show) {
-  notificationContainer.appendChild(notificationSection);
-}
+    notificationSection.appendChild(header);
+    notificationSection.appendChild(content);
+    notificationContainer.appendChild(notificationSection);
+  })
+  .catch(error => {
+    console.error("Notification fetch error:", error);
+  });
