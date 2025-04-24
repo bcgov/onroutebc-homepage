@@ -1,7 +1,7 @@
 // Notification
 const notification = {
   // true | false (no quotation marks)
-  show: false,
+  show: true,
   // "red" | "blue" | "green" | "gold"
   color: "red",
   // "Your header text here"
