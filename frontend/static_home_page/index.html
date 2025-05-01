@@ -58,7 +58,10 @@
     <link rel="preload" as="image" href="./img/hero-sm.webp" />
 
     <!-- Notification Script -->
-    <script src="./notification.js" defer></script>
+    <script
+      window.PUBLIC_API_URL = "{{PUBLIC_API_URL}}";
+      src="./notification.js" defer>
+    </script>
 
     <title>onRouteBC - Home</title>
   </head>
