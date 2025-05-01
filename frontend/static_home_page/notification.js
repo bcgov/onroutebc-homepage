@@ -1,5 +1,3 @@
-const PUBLIC_API_URL = window.PUBLIC_API_URL;
-
 fetch(`${PUBLIC_API_URL}/outage-notification`)
   .then(response => {
     if (!response.ok) {
