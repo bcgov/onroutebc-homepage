@@ -39,7 +39,7 @@ spec:
             - name: LOG_LEVEL
               value: "info"
             - name: PUBLIC_API_URL
-              value: 'onroutebc-{{ ternary "prod" "test" (eq .Release.Namespace "c28f0c-prod") }}-public.{{.Values.global.domain}}'
+              value: 'https://onroutebc-{{ ternary "prod" "test" (eq .Release.Namespace "c28f0c-prod") }}-public.{{.Values.global.domain}}'
           ports:
             - name: http
               containerPort: 3000
