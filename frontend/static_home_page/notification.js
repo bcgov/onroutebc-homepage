@@ -1,4 +1,6 @@
-fetch("{{PUBLIC_API_URL}}/outage-notification")
+const apiUrl = window._env_?.PUBLIC_API_URL || "https://default.api.url";
+console.log("API URL:", apiUrl);
+fetch("${PUBLIC_API_URL}/outage-notification")
   .then(response => {
     if (!response.ok) {
       throw new Error('Failed to fetch outage notification');

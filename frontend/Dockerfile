@@ -18,3 +18,10 @@ EXPOSE 3000
 
 # Nonroot user
 USER 1001
+
+#Entry point script to run Caddy and the frontend app
+# Copy the entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
