@@ -14,7 +14,8 @@ COPY Caddyfile /etc/caddy/Caddyfile
 COPY static_home_page /var/www/onroute
 
 # Use envsubst to replace PUBLIC_API_URL in notification.js.template
-RUN export PUBLIC_API_URL=${PUBLIC_API_URL}
+RUN export PUBLIC_API_URL=${PUBLIC_API_URL} && \
+  envsubst < /var/www/onroute/notification.js.template > /var/www/onroute/notification.js
 
 # Replace {{DASHBOARD}} in index.html
 RUN sed -i "s/{{DASHBOARD}}/${DASHBOARD}/g" /var/www/onroute/index.html 
