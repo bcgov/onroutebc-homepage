@@ -23,4 +23,3 @@ RUN sed -i "s/{{DASHBOARD}}/${DASHBOARD}/g" /var/www/onroute/index.html
 RUN caddy fmt /etc/caddy/Caddyfile
 
 EXPOSE 3000
-USER 1001
