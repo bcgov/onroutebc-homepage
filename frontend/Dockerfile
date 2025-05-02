@@ -2,6 +2,10 @@
 # Deploy using Caddy to host static files
 FROM caddy:2.8.4-alpine
 #RUN apk add --no-cache ca-certificates
+# Install gettext for envsubst
+RUN apk add --no-cache gettext
+# Replace placeholder in notification.js using envsubst
+RUN envsubst < /var/www/onroute/notification.js.template > /var/www/onroute/notification.js
 
 # Copy static files, verify Caddyfile formatting
 ARG DASHBOARD=onroutebc-prod-frontend.apps.silver.devops.gov.bc.ca
@@ -18,10 +22,3 @@ EXPOSE 3000
 
 # Nonroot user
 USER 1001
-
-#Entry point script to run Caddy and the frontend app
-# Copy the entrypoint
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
