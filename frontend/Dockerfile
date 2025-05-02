@@ -5,7 +5,7 @@ FROM caddy:2.8.4-alpine
 # Install gettext for envsubst
 RUN apk add --no-cache gettext
 # Replace placeholder in notification.js using envsubst
-RUN envsubst < /var/www/onroute/notification.js.template > /var/www/onroute/notification.js
+RUN envsubst < /var/www/onroute/static_home_page/notification.js.template > /var/www/onroute/static_home_page/notification.js
 
 # Copy static files, verify Caddyfile formatting
 ARG DASHBOARD=onroutebc-prod-frontend.apps.silver.devops.gov.bc.ca
