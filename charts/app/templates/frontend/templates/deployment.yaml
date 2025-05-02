@@ -34,7 +34,6 @@ spec:
             - "sh"
             - "-c"
             - "envsubst < /var/www/onroute/notification.js.template > /var/www/onroute/notification.js"
-            - "caddy fmt /etc/caddy/Caddyfile"
           securityContext:
             capabilities:
               add: [ "NET_BIND_SERVICE" ]
