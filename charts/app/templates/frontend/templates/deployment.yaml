@@ -35,7 +35,6 @@ spec:
             - "-c"
             - "envsubst < /var/www/onroute/notification.js.template > /var/www/onroute/notification.js"
           securityContext:
-            allowPrivilegeEscalation: true
             capabilities:
               add: [ "NET_BIND_SERVICE" ]
           image: "{{.Values.global.registry}}/{{.Values.global.repository}}/frontend:{{ .Values.global.tag | default .Chart.AppVersion }}"
