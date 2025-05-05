@@ -2,6 +2,9 @@
 # Deploy using Caddy to host static files
 FROM caddy:2.8.4-alpine
 
+# Install envsubst
+RUN apk add --no-cache gettext
+
 # Copy static files, verify Caddyfile formatting
 ARG DASHBOARD=onroutebc-prod-frontend.apps.silver.devops.gov.bc.ca
 
