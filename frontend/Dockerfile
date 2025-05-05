@@ -5,18 +5,12 @@ FROM caddy:2.8.4-alpine
 # Copy static files, verify Caddyfile formatting
 ARG DASHBOARD=onroutebc-prod-frontend.apps.silver.devops.gov.bc.ca
 
-# Install envsubst
-RUN apk add --no-cache gettext
-
 # Copy files
 COPY Caddyfile /etc/caddy/Caddyfile
 COPY static_home_page /var/www/onroute
 
 # Change permissions
 RUN chmod -R 0777 /var/www/
-
-# Use envsubst to replace PUBLIC_API_URL in notification.js.template
-RUN export PUBLIC_API_URL=${PUBLIC_API_URL}
 
 # Replace {{DASHBOARD}} in index.html
 RUN sed -i "s/{{DASHBOARD}}/${DASHBOARD}/g" /var/www/onroute/index.html 
