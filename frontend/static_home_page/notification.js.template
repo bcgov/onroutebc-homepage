@@ -1,6 +1,4 @@
 const PUBLIC_API_URL = "${PUBLIC_API_URL}";
-console.log("PUBLIC API URL:", PUBLIC_API_URL);
-
 fetch(`${PUBLIC_API_URL}/outage-notification`)
   .then(response => {
     if (!response.ok) {
