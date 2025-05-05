@@ -40,6 +40,9 @@ frontend:
     maxReplicas: 7
     #-- the target cpu utilization percentage, is from request cpu and NOT LIMIT CPU.
     targetCPUUtilizationPercentage: 80
+  podSecurityContext:
+    runAsNonRoot: true
+    fsGroup: 0
   #-- the service for the component. for inter namespace communication, use the service name as the hostname.
   service:
     #-- enable or disable the service.
