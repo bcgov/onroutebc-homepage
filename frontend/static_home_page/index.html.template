@@ -58,7 +58,9 @@
     <link rel="preload" as="image" href="./img/hero-sm.webp" />
 
     <!-- Notification Script -->
-    <script src="./notification.js" defer></script>
+    <script
+      src="./notification.js" defer>
+    </script>
 
     <title>onRouteBC - Home</title>
   </head>
@@ -131,7 +133,7 @@
                       <a
                         role="button"
                         class="btn btn--blue"
-                        href="https://{{DASHBOARD}}/?idpHint=bceidbusiness"
+                        href="${DASHBOARD_URL}/?idpHint=bceidbusiness"
                       >
                         Log into onRouteBC
                       </a>
@@ -288,7 +290,7 @@
                   <a
                     role="button"
                     class="btn btn--sm btn--grey"
-                    href="https://{{DASHBOARD}}/?idpHint=idir"
+                    href="${DASHBOARD_URL}/?idpHint=idir"
                   >
                     Log in using IDIR
                   </a>

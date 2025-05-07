@@ -1,0 +1,32 @@
+const PUBLIC_API_URL = "${PUBLIC_API_URL}";
+fetch(`${PUBLIC_API_URL}/outage-notification`)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to fetch outage notification');
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (!data.title || !data.message) return;
+
+    const notificationContainer = document.querySelector("#notification");
+    if (!notificationContainer) return;
+
+    const notificationSection = document.createElement("div");
+    notificationSection.className = "box notification";
+
+    const header = document.createElement("div");
+    header.className = "box-header notification__header notification__header--red";
+    header.innerHTML = `<h2>${data.title}</h2>`;
+
+    const content = document.createElement("div");
+    content.className = "box-content notification__content notification__content--red";
+    content.innerHTML = `<p>${data.message}</p>`;
+
+    notificationSection.appendChild(header);
+    notificationSection.appendChild(content);
+    notificationContainer.appendChild(notificationSection);
+  })
+  .catch(error => {
+    console.error("Notification fetch error:", error);
+  });

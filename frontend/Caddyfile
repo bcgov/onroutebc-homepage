@@ -4,5 +4,6 @@
 
 :3000 {
 	root * /var/www/onroute
+	templates
 	file_server
 }
