@@ -35,6 +35,7 @@ spec:
             - "-c"
             - |
               envsubst < /var/www/onroute/notification.js.template > /var/www/onroute/notification.js \
+              && envsubst < /var/www/onroute/index.html.template > /var/www/onroute/index.html \
               && exec caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
           securityContext:
             capabilities:
@@ -46,6 +47,8 @@ spec:
               value: "info"
             - name: PUBLIC_API_URL
               value: 'https://onroutebc-{{ ternary "prod" "test" (eq .Release.Namespace "c28f0c-prod") }}-public.{{.Values.global.domain}}'
+            - name: DASHBOARD_URL
+              value: 'https://onroutebc-{{ ternary "prod" "test" (eq .Release.Namespace "c28f0c-prod") }}-frontend.{{.Values.global.domain}}'
           ports:
             - name: http
               containerPort: 3000

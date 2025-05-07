@@ -133,7 +133,7 @@
                       <a
                         role="button"
                         class="btn btn--blue"
-                        href="https://{{DASHBOARD}}/?idpHint=bceidbusiness"
+                        href="${DASHBOARD_URL}/?idpHint=bceidbusiness"
                       >
                         Log into onRouteBC
                       </a>
@@ -290,7 +290,7 @@
                   <a
                     role="button"
                     class="btn btn--sm btn--grey"
-                    href="https://{{DASHBOARD}}/?idpHint=idir"
+                    href="${DASHBOARD_URL}/?idpHint=idir"
                   >
                     Log in using IDIR
                   </a>
