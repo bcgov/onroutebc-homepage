@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     name: ZAP Scans
     env:
-      DOMAIN: apps.silver.devops.gov.bc.ca
+      DOMAIN: apps.gold.devops.gov.bc.ca
       PREFIX: ${{ github.event.repository.name }}-test
     steps:
       - name: ZAP Scan
