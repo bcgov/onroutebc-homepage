@@ -40,7 +40,7 @@ jobs:
         run: echo "tag=${{ inputs.tag || steps.pr.outputs.pr }}" >> $GITHUB_OUTPUT
 
   # https://github.com/bcgov/quickstart-openshift-helpers
-  deploy-test:
+  deploy-silver-test:
     name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
     needs: [vars]
     uses: ./.github/workflows/.deployer.yml
@@ -48,13 +48,37 @@ jobs:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
     with:
-      environment: test
+      environment: silver-test
+      db_user: app
+      tag: ${{ needs.vars.outputs.tag }}
+
+  deploy-gold-test:
+    name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
+    needs: [vars]
+    uses: ./.github/workflows/.deployer.yml
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
+    with:
+      environment: gold-test
+      db_user: app
+      tag: ${{ needs.vars.outputs.tag }}
+  
+  deploy-golddr-test:
+    name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
+    needs: [vars]
+    uses: ./.github/workflows/.deployer.yml
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
+    with:
+      environment: golddr-test
       db_user: app
       tag: ${{ needs.vars.outputs.tag }}
   
   promote-test:
     name: Promote Images
-    needs: [deploy-test, vars]
+    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
     runs-on: ubuntu-24.04
     permissions:
       packages: write
@@ -69,16 +93,48 @@ jobs:
           repository: ${{ github.repository }}/${{ matrix.package }}
           target: ${{ needs.vars.outputs.tag }}
           tags: test
-
-  deploy-prod:
+  
+  deploy-silver-prod:
     name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
-    needs: [deploy-test, vars]
+    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
     uses: ./.github/workflows/.deployer.yml
     secrets:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
     with:
-      environment: prod
+      environment: silver-prod
+      db_user: app
+      params:
+        --set frontend.deploymentStrategy=RollingUpdate
+        --set global.autoscaling=true
+        --set frontend.pdb.enabled=false
+      tag: ${{ needs.vars.outputs.tag }}
+
+  deploy-gold-prod:
+    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
+    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
+    uses: ./.github/workflows/.deployer.yml
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
+    with:
+      environment: gold-prod
+      db_user: app
+      params:
+        --set frontend.deploymentStrategy=RollingUpdate
+        --set global.autoscaling=true
+        --set frontend.pdb.enabled=false
+      tag: ${{ needs.vars.outputs.tag }}
+  
+  deploy-golddr-prod:
+    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
+    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
+    uses: ./.github/workflows/.deployer.yml
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
+    with:
+      environment: golddr-prod
       db_user: app
       params:
         --set frontend.deploymentStrategy=RollingUpdate
@@ -88,7 +144,7 @@ jobs:
 
   promote-prod:
     name: Promote Images
-    needs: [deploy-prod, vars]
+    needs: [vars, deploy-silver-prod, deploy-gold-prod, deploy-golddr-prod]
     runs-on: ubuntu-24.04
     permissions:
       packages: write

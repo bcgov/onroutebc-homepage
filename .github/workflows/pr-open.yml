@@ -27,7 +27,7 @@ jobs:
           triggers: ('${{ matrix.package }}/')
 
   # https://github.com/bcgov/quickstart-openshift-helpers
-  deploys:
+  deploys-silver-dev:
     name: Deploys (${{ github.event.number }})
     needs: [builds]
     uses: ./.github/workflows/.deployer.yml
@@ -35,14 +35,40 @@ jobs:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
     with:
+      environment: silver-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
       db_user: app-${{github.event.number}}
       params: --set global.secrets.persist=false
 
+  deploys-gold-dev:
+    name: Deploys (${{ github.event.number }})
+    needs: [builds]
+    uses: ./.github/workflows/.deployer.yml
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
+    with:
+      environment: gold-dev
+      triggers: ( 'frontend/' '.github/' 'charts/')
+      db_user: app-${{github.event.number}}
+      params: --set global.secrets.persist=false
+  
+  deploys-golddr-dev:
+    name: Deploys (${{ github.event.number }})
+    needs: [builds]
+    uses: ./.github/workflows/.deployer.yml
+    secrets:
+      oc_namespace: ${{ secrets.OC_NAMESPACE }}
+      oc_token: ${{ secrets.OC_TOKEN }}
+    with:
+      environment: golddr-dev
+      triggers: ( 'frontend/' '.github/' 'charts/')
+      db_user: app-${{github.event.number}}
+      params: --set global.secrets.persist=false
 
   results:
     name: PR Results
-    needs: [builds, deploys]
+    needs: [builds, deploys-silver-dev, deploys-gold-dev, deploys-golddr-dev]
     if: always()
     runs-on: ubuntu-24.04
     steps:
