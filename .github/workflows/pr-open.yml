@@ -34,6 +34,7 @@ jobs:
     secrets:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
+      oc_server: ${{ secrets.OC_SERVER }}
     with:
       environment: silver-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
@@ -47,6 +48,7 @@ jobs:
     secrets:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
+      oc_server: ${{ secrets.OC_SERVER }}
     with:
       environment: gold-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
@@ -60,6 +62,7 @@ jobs:
     secrets:
       oc_namespace: ${{ secrets.OC_NAMESPACE }}
       oc_token: ${{ secrets.OC_TOKEN }}
+      oc_server: ${{ secrets.OC_SERVER }}
     with:
       environment: golddr-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
