@@ -43,45 +43,22 @@ jobs:
   deploy-silver-test:
     name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
     needs: [vars]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
+    uses: ./.github/workflows/silver-test.yml
+    secrets: inherit
     with:
-      environment: silver-test
-      db_user: app
       tag: ${{ needs.vars.outputs.tag }}
 
   deploy-gold-test:
     name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
     needs: [vars]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
+    uses: ./.github/workflows/gold-test.yml
+    secrets: inherit
     with:
-      environment: gold-test
-      db_user: app
-      tag: ${{ needs.vars.outputs.tag }}
-  
-  deploy-golddr-test:
-    name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
-    needs: [vars]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
-    with:
-      environment: golddr-test
-      db_user: app
       tag: ${{ needs.vars.outputs.tag }}
   
   promote-test:
     name: Promote Images
-    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
+    needs: [vars, deploy-silver-test, deploy-gold-test]
     runs-on: ubuntu-24.04
     permissions:
       packages: write
@@ -99,58 +76,23 @@ jobs:
   
   deploy-silver-prod:
     name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
-    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
+    needs: [vars, deploy-silver-test, deploy-gold-test]
+    uses: ./.github/workflows/silver-prod.yml
+    secrets: inherit
     with:
-      environment: silver-prod
-      db_user: app
-      params:
-        --set frontend.deploymentStrategy=RollingUpdate
-        --set global.autoscaling=true
-        --set frontend.pdb.enabled=false
       tag: ${{ needs.vars.outputs.tag }}
 
   deploy-gold-prod:
     name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
     needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
+    uses: ./.github/workflows/gold-prod.yml
+    secrets: inherit
     with:
-      environment: gold-prod
-      db_user: app
-      params:
-        --set frontend.deploymentStrategy=RollingUpdate
-        --set global.autoscaling=true
-        --set frontend.pdb.enabled=false
       tag: ${{ needs.vars.outputs.tag }}
   
-  deploy-golddr-prod:
-    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
-    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
-    with:
-      environment: golddr-prod
-      db_user: app
-      params:
-        --set frontend.deploymentStrategy=RollingUpdate
-        --set global.autoscaling=true
-        --set frontend.pdb.enabled=false
-      tag: ${{ needs.vars.outputs.tag }}
-
   promote-prod:
     name: Promote Images
-    needs: [vars, deploy-silver-prod, deploy-gold-prod, deploy-golddr-prod]
+    needs: [vars, deploy-silver-prod, deploy-gold-prod]
     runs-on: ubuntu-24.04
     permissions:
       packages: write

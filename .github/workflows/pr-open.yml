@@ -30,48 +30,18 @@ jobs:
   deploys-silver-dev:
     name: Deploys (${{ github.event.number }})
     needs: [builds]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
-    with:
-      environment: silver-dev
-      triggers: ( 'frontend/' '.github/' 'charts/')
-      db_user: app-${{github.event.number}}
-      params: --set global.secrets.persist=false
+    uses: ./.github/workflows/silver-dev.yml
+    secrets: inherit
 
   deploys-gold-dev:
     name: Deploys (${{ github.event.number }})
     needs: [builds]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
-    with:
-      environment: gold-dev
-      triggers: ( 'frontend/' '.github/' 'charts/')
-      db_user: app-${{github.event.number}}
-      params: --set global.secrets.persist=false
-  
-  deploys-golddr-dev:
-    name: Deploys (${{ github.event.number }})
-    needs: [builds]
-    uses: ./.github/workflows/.deployer.yml
-    secrets:
-      oc_namespace: ${{ secrets.OC_NAMESPACE }}
-      oc_token: ${{ secrets.OC_TOKEN }}
-      oc_server: ${{ secrets.OC_SERVER }}
-    with:
-      environment: golddr-dev
-      triggers: ( 'frontend/' '.github/' 'charts/')
-      db_user: app-${{github.event.number}}
-      params: --set global.secrets.persist=false
+    uses: ./.github/workflows/gold-dev.yml
+    secrets: inherit
 
   results:
     name: PR Results
-    needs: [builds, deploys-silver-dev, deploys-gold-dev, deploys-golddr-dev]
+    needs: [builds, deploys-silver-dev, deploys-gold-dev]
     if: always()
     runs-on: ubuntu-24.04
     steps:

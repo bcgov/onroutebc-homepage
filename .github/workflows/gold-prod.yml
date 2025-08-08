@@ -1,0 +1,56 @@
+---
+name: Deploy Prod (Gold)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+jobs:
+  deploy-gold-prod:
+    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
+    uses: ./.github/workflows/.deploy.yml
+    secrets: inherit
+    with:
+      environment: gold-prod
+      db_user: app
+      tag: ${{ needs.vars.outputs.tag }}
+      params:
+        --set frontend.deploymentStrategy=RollingUpdate
+        --set global.autoscaling=true
+        --set frontend.pdb.enabled=false
+        ${{ inputs.params }}
+  
+  deploy-golddr-prod:
+    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
+    uses: ./.github/workflows/.deploy.yml
+    secrets: inherit
+    with:
+      environment: golddr-prod
+      db_user: app
+      tag: ${{ needs.vars.outputs.tag }}
+      params:
+        --set frontend.deploymentStrategy=RollingUpdate
+        --set global.autoscaling=true
+        --set frontend.pdb.enabled=false
+        ${{ inputs.params }}
