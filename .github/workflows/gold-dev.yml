@@ -36,8 +36,8 @@ jobs:
       triggers: ( 'frontend/' '.github/' 'charts/')
       db_user: app-${{github.event.number}}
       params: |
-        --set global.secrets.persist=false \
-        ${{ inputs.params }} \
+        --set global.secrets.persist=false
+        ${{ inputs.params }}
 
   deploys-golddr-dev:
     name: Deploys (${{ github.event.number }})
