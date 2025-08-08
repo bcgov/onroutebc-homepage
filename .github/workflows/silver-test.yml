@@ -1,0 +1,38 @@
+---
+name: Deploy Test (Silver)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+jobs:
+  deploy-silver-test:
+    name: Deploy (test, tag=${{ inputs.tag }})
+    uses: ./.github/workflows/.deploy.yml
+    secrets: inherit
+    with:
+      environment: silver-test
+      db_user: app
+      tag: ${{ inputs.tag }}
+      params: ${{ inputs.params }}

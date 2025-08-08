@@ -1,0 +1,51 @@
+---
+name: Deploy Test (Gold)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+jobs:
+  deploys-gold-test:
+    name: Deploys (${{ github.event.number }})
+    uses: ./.github/workflows/.deployer.yml
+    secrets: inherit
+    with:
+      environment: gold-test
+      db_user: app
+      tag: ${{ needs.vars.outputs.tag }}
+      params: |
+        ${{ inputs.params }} \
+
+  deploys-golddr-test:
+    name: Deploys (${{ github.event.number }})
+    uses: ./.github/workflows/.deployer.yml
+    secrets: inherit
+    with:
+      environment: golddr-test
+      db_user: app
+      tag: ${{ needs.vars.outputs.tag }}
+      params: |
+        ${{ inputs.params }} \
+

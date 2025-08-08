@@ -1,0 +1,53 @@
+---
+name: Deploy Dev (Gold)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+jobs:
+  deploys-gold-dev:
+    name: Deploys (${{ github.event.number }})
+    uses: ./.github/workflows/.deployer.yml
+    secrets: inherit
+    with:
+      environment: gold-dev
+      triggers: ( 'frontend/' '.github/' 'charts/')
+      db_user: app-${{github.event.number}}
+      params:
+        --set global.secrets.persist=false
+        ${{ inputs.params }}
+
+  deploys-golddr-dev:
+    name: Deploys (${{ github.event.number }})
+    uses: ./.github/workflows/.deployer.yml
+    secrets: inherit
+    with:
+      environment: golddr-dev
+      triggers: ( 'frontend/' '.github/' 'charts/')
+      db_user: app-${{github.event.number}}
+      params:
+        --set global.secrets.persist=false
+        ${{ inputs.params }}
+
