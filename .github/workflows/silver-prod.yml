@@ -29,7 +29,7 @@ on:
 jobs:
   deploy-silver-prod:
     name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
-    uses: ./.github/workflows/.deploy.yml
+    uses: ./.github/workflows/.deployer.yml
     secrets: inherit
     with:
       environment: silver-prod
