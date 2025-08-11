@@ -20,7 +20,7 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.label.name == 'demo' }}
     env:
       DEST: demo
-      DOMAIN: apps.silver.devops.gov.bc.ca
+      DOMAIN: apps.gold.devops.gov.bc.ca
       REPO: ${{ github.event.repository.name }}
     runs-on: ubuntu-latest
     steps:
@@ -29,9 +29,9 @@ jobs:
           # Set Up Routing
 
           # OC Login
-          OC_TEMP_TOKEN=$(curl -k -X POST ${{ vars.oc_server }}/api/v1/namespaces/${{ secrets.oc_namespace }}/serviceaccounts/pipeline/token --header "Authorization: Bearer ${{ secrets.oc_token }}" -d '{"spec": {"expirationSeconds": 600}}' -H 'Content-Type: application/json; charset=utf-8' | jq -r '.status.token' )
+          OC_TEMP_TOKEN=$(curl -k -X POST ${{ secrets.oc_server }}/api/v1/namespaces/${{ secrets.oc_namespace }}/serviceaccounts/pipeline/token --header "Authorization: Bearer ${{ secrets.oc_token }}" -d '{"spec": {"expirationSeconds": 600}}' -H 'Content-Type: application/json; charset=utf-8' | jq -r '.status.token' )
 
-          oc login --token=$OC_TEMP_TOKEN --server=${{ vars.oc_server }}
+          oc login --token=$OC_TEMP_TOKEN --server=${{ secrets.oc_server }}
           oc project ${{ secrets.oc_namespace }} #Safeguard!
 
           # Delete and replace route
