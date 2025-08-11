@@ -84,7 +84,7 @@ jobs:
 
   deploy-gold-prod:
     name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
-    needs: [vars, deploy-silver-test, deploy-gold-test, deploy-golddr-test]
+    needs: [vars, deploy-silver-test, deploy-gold-test]
     uses: ./.github/workflows/gold-prod.yml
     secrets: inherit
     with:
