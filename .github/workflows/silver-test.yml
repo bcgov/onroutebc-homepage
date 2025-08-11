@@ -29,7 +29,7 @@ on:
 jobs:
   deploy-silver-test:
     name: Deploy (test, tag=${{ inputs.tag }})
-    uses: ./.github/workflows/.deploy.yml
+    uses: ./.github/workflows/.deployer.yml
     secrets: inherit
     with:
       environment: silver-test
