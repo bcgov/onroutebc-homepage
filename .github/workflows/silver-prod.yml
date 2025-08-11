@@ -36,6 +36,7 @@ jobs:
       db_user: app
       tag: ${{ needs.vars.outputs.tag }}
       params:
+        --set global.domain="apps.silver.devops.gov.bc.ca"
         --set frontend.deploymentStrategy=RollingUpdate
         --set global.autoscaling=true
         --set frontend.pdb.enabled=false
