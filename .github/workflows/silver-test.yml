@@ -35,4 +35,6 @@ jobs:
       environment: silver-test
       db_user: app
       tag: ${{ inputs.tag }}
-      params: ${{ inputs.params }}
+      params: 
+        --set global.domain="apps.silver.devops.gov.bc.ca"
+        ${{ inputs.params }}

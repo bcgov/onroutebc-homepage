@@ -36,6 +36,7 @@ jobs:
       triggers: ( 'frontend/' '.github/' 'charts/')
       db_user: app-${{github.event.number}}
       params:
+        --set global.domain="apps.gold.devops.gov.bc.ca"
         --set global.secrets.persist=false
         ${{ inputs.params }}
 
@@ -48,6 +49,7 @@ jobs:
       triggers: ( 'frontend/' '.github/' 'charts/')
       db_user: app-${{github.event.number}}
       params:
+        --set global.domain="apps.golddr.devops.gov.bc.ca"
         --set global.secrets.persist=false
         ${{ inputs.params }}
 
