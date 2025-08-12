@@ -28,13 +28,13 @@ on:
         type: string
 jobs:
   deploy-gold-prod:
-    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
+    name: Deploy (prod, tag=${{ inputs.tag }})
     uses: ./.github/workflows/.deployer.yml
     secrets: inherit
     with:
       environment: gold-prod
       db_user: app
-      tag: ${{ needs.vars.outputs.tag }}
+      tag: ${{ inputs.tag }}
       params:
         --set global.domain="apps.gold.devops.gov.bc.ca"
         --set frontend.deploymentStrategy=RollingUpdate
@@ -43,13 +43,13 @@ jobs:
         ${{ inputs.params }}
   
   deploy-golddr-prod:
-    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
+    name: Deploy (prod, tag=${{ inputs.tag }})
     uses: ./.github/workflows/.deployer.yml
     secrets: inherit
     with:
       environment: golddr-prod
       db_user: app
-      tag: ${{ needs.vars.outputs.tag }}
+      tag: ${{ inputs.tag }}
       params:
         --set global.domain="apps.golddr.devops.gov.bc.ca"
         --set frontend.deploymentStrategy=RollingUpdate
