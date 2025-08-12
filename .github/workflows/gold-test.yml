@@ -35,8 +35,9 @@ jobs:
       environment: gold-test
       db_user: app
       tag: ${{ needs.vars.outputs.tag }}
-      params: |
-        ${{ inputs.params }} \
+      params:
+        --set global.domain="apps.gold.devops.gov.bc.ca"
+        ${{ inputs.params }}
 
   deploys-golddr-test:
     name: Deploys (${{ github.event.number }})
@@ -46,6 +47,7 @@ jobs:
       environment: golddr-test
       db_user: app
       tag: ${{ needs.vars.outputs.tag }}
-      params: |
-        ${{ inputs.params }} \
+      params:
+        --set global.domain="apps.golddr.devops.gov.bc.ca"
+        ${{ inputs.params }} 
 
