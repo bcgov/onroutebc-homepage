@@ -33,7 +33,7 @@ jobs:
     secrets: inherit
     with:
       environment: gold-uat
-      tag: ${{ needs.vars.outputs.tag }}
+      tag: ${{ inputs.tag }}
       params:
         --set global.domain="apps.gold.devops.gov.bc.ca"
         ${{ inputs.params }}
@@ -44,7 +44,7 @@ jobs:
     secrets: inherit
     with:
       environment: golddr-uat
-      tag: ${{ needs.vars.outputs.tag }}
+      tag: ${{ inputs.tag }}
       params:
         --set global.domain="apps.golddr.devops.gov.bc.ca"
         ${{ inputs.params }} 
