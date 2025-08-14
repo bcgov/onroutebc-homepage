@@ -33,7 +33,6 @@ jobs:
     secrets: inherit
     with:
       environment: silver-test
-      db_user: app
       tag: ${{ inputs.tag }}
       params: 
         --set global.domain="apps.silver.devops.gov.bc.ca"

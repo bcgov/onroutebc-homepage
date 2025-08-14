@@ -34,7 +34,6 @@ jobs:
     with:
       environment: gold-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
-      db_user: app-${{github.event.number}}
       params:
         --set global.domain="apps.gold.devops.gov.bc.ca"
         --set global.secrets.persist=false
@@ -47,7 +46,6 @@ jobs:
     with:
       environment: golddr-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
-      db_user: app-${{github.event.number}}
       params:
         --set global.domain="apps.golddr.devops.gov.bc.ca"
         --set global.secrets.persist=false
