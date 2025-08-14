@@ -1,5 +1,5 @@
 ---
-name: Deploy Prod (Silver)
+name: Deploy Uat (Gold)
 
 on:
   workflow_dispatch:
@@ -27,16 +27,25 @@ on:
         required: false
         type: string
 jobs:
-  deploy-silver-prod:
-    name: Deploy (prod, tag=${{ inputs.tag }})
+  deploys-gold-uat:
+    name: Deploys (${{ github.event.number }})
     uses: ./.github/workflows/.deployer.yml
     secrets: inherit
     with:
-      environment: silver-prod
-      tag: ${{ inputs.tag }}
+      environment: gold-uat
+      tag: ${{ needs.vars.outputs.tag }}
       params:
-        --set global.domain="apps.silver.devops.gov.bc.ca"
-        --set frontend.deploymentStrategy=RollingUpdate
-        --set global.autoscaling=true
-        --set frontend.pdb.enabled=false
+        --set global.domain="apps.gold.devops.gov.bc.ca"
         ${{ inputs.params }}
+
+  deploys-golddr-uat:
+    name: Deploys (${{ github.event.number }})
+    uses: ./.github/workflows/.deployer.yml
+    secrets: inherit
+    with:
+      environment: golddr-uat
+      tag: ${{ needs.vars.outputs.tag }}
+      params:
+        --set global.domain="apps.golddr.devops.gov.bc.ca"
+        ${{ inputs.params }} 
+

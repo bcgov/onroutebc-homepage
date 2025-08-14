@@ -33,7 +33,6 @@ jobs:
     secrets: inherit
     with:
       environment: gold-test
-      db_user: app
       tag: ${{ needs.vars.outputs.tag }}
       params:
         --set global.domain="apps.gold.devops.gov.bc.ca"
@@ -45,7 +44,6 @@ jobs:
     secrets: inherit
     with:
       environment: golddr-test
-      db_user: app
       tag: ${{ needs.vars.outputs.tag }}
       params:
         --set global.domain="apps.golddr.devops.gov.bc.ca"
