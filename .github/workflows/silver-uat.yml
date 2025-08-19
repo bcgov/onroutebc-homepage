@@ -33,7 +33,7 @@ jobs:
     secrets: inherit
     with:
       environment: silver-uat
-      tag: ${{ needs.vars.outputs.tag }}
+      tag: ${{ inputs.tag }}
       params:
         --set global.domain="apps.silver.devops.gov.bc.ca"
         ${{ inputs.params }}
