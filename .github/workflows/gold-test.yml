@@ -35,7 +35,8 @@ jobs:
       environment: gold-test
       tag: ${{ inputs.tag }}
       params:
-        --set frontend.ingress.host="test.onroutebc.gov.bc.ca"
+        --set frontend.ingress.host="tst.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls.secretName=tst-tls
         ${{ inputs.params }}
 
   deploys-golddr-test:
@@ -46,6 +47,7 @@ jobs:
       environment: golddr-test
       tag: ${{ inputs.tag }}
       params:
-        --set frontend.ingress.host="test.onroutebc.gov.bc.ca"
+        --set frontend.ingress.host="tst.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls.secretName=tst-tls
         ${{ inputs.params }} 
 

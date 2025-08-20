@@ -36,6 +36,7 @@ jobs:
       tag: ${{ inputs.tag }}
       params:
         --set frontend.ingress.host="uat.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls.secretName=uat-tls
         ${{ inputs.params }}
 
   deploys-golddr-uat:
@@ -47,5 +48,6 @@ jobs:
       tag: ${{ inputs.tag }}
       params:
         --set frontend.ingress.host="uat.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls.secretName=uat-tls
         ${{ inputs.params }} 
 
