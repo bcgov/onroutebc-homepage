@@ -35,7 +35,7 @@ jobs:
       environment: gold-test
       tag: ${{ inputs.tag }}
       params:
-        --set global.domain="apps.gold.devops.gov.bc.ca"
+        --set frontend.ingress.host="test.onroutebc.gov.bc.ca"
         ${{ inputs.params }}
 
   deploys-golddr-test:
@@ -46,6 +46,6 @@ jobs:
       environment: golddr-test
       tag: ${{ inputs.tag }}
       params:
-        --set global.domain="apps.golddr.devops.gov.bc.ca"
+        --set frontend.ingress.host="test.onroutebc.gov.bc.ca"
         ${{ inputs.params }} 
 
