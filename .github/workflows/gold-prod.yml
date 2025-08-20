@@ -35,7 +35,6 @@ jobs:
       environment: gold-prod
       tag: ${{ inputs.tag }}
       params:
-      params:
         --set frontend.ingress.host="onroutebc.gov.bc.ca"
         --set frontend.ingress.tls[0].secretName="prod-tls"
         --set frontend.deploymentStrategy=RollingUpdate
