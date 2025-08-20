@@ -36,7 +36,7 @@ jobs:
       triggers: ( 'frontend/' '.github/' 'charts/')
       params:
         --set frontend.ingress.host="dev.onroutebc.gov.bc.ca"
-        --set frontend.ingress.tls.secretName="dev-tls"
+        --set frontend.ingress.tls[0].secretName="dev-tls"
         --set global.secrets.persist=false
         ${{ inputs.params }}
 
@@ -49,7 +49,7 @@ jobs:
       triggers: ( 'frontend/' '.github/' 'charts/')
       params:
         --set frontend.ingress.host="dev.onroutebc.gov.bc.ca"
-        --set frontend.ingress.tls.secretName="dev-tls"
+        --set frontend.ingress.tls[0].secretName="dev-tls"
         --set global.secrets.persist=false
         ${{ inputs.params }}
 

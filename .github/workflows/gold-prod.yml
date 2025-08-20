@@ -37,7 +37,7 @@ jobs:
       params:
       params:
         --set frontend.ingress.host="onroutebc.gov.bc.ca"
-        --set frontend.ingress.tls.secretName="prod-tls"
+        --set frontend.ingress.tls[0].secretName="prod-tls"
         --set frontend.deploymentStrategy=RollingUpdate
         --set global.autoscaling=true
         --set frontend.pdb.enabled=false
@@ -52,7 +52,7 @@ jobs:
       tag: ${{ inputs.tag }}
       params:
         --set frontend.ingress.host="onroutebc.gov.bc.ca"
-        --set frontend.ingress.tls.secretName="prod-tls"
+        --set frontend.ingress.tls[0].secretName="prod-tls"
         --set frontend.deploymentStrategy=RollingUpdate
         --set global.autoscaling=true
         --set frontend.pdb.enabled=false

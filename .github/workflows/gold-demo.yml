@@ -36,7 +36,7 @@ jobs:
       tag: ${{ inputs.tag }}
       params:
         --set frontend.ingress.host="demo.onroutebc.gov.bc.ca"
-        --set frontend.ingress.tls.secretName="demo-tls"
+        --set frontend.ingress.tls[0].secretName="demo-tls"
         ${{ inputs.params }}
 
   deploys-golddr-demo:
@@ -48,6 +48,6 @@ jobs:
       tag: ${{ inputs.tag }}
       params:
         --set frontend.ingress.host="demo.onroutebc.gov.bc.ca"
-        --set frontend.ingress.tls.secretName="demo-tls"
+        --set frontend.ingress.tls[0].secretName="demo-tls"
         ${{ inputs.params }} 
 
