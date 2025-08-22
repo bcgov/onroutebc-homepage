@@ -35,7 +35,8 @@ jobs:
       environment: gold-uat
       tag: ${{ inputs.tag }}
       params:
-        --set global.domain="apps.gold.devops.gov.bc.ca"
+        --set frontend.ingress.host="uat.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="uat-tls"
         ${{ inputs.params }}
 
   deploys-golddr-uat:
@@ -46,6 +47,7 @@ jobs:
       environment: golddr-uat
       tag: ${{ inputs.tag }}
       params:
-        --set global.domain="apps.golddr.devops.gov.bc.ca"
+        --set frontend.ingress.host="uat.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="uat-tls"
         ${{ inputs.params }} 
 

@@ -35,7 +35,8 @@ jobs:
       environment: gold-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
       params:
-        --set global.domain="apps.gold.devops.gov.bc.ca"
+        --set frontend.ingress.host="dev.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="dev-tls"
         --set global.secrets.persist=false
         ${{ inputs.params }}
 
@@ -47,7 +48,8 @@ jobs:
       environment: golddr-dev
       triggers: ( 'frontend/' '.github/' 'charts/')
       params:
-        --set global.domain="apps.golddr.devops.gov.bc.ca"
+        --set frontend.ingress.host="dev.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="dev-tls"
         --set global.secrets.persist=false
         ${{ inputs.params }}
 
