@@ -18,13 +18,13 @@ spec:
     {{- range .Values.frontend.ingress.tls }}
     - hosts:
         {{- range .hosts }}
-        - {{tpl . $ | quote }} #https://stackoverflow.com/a/67815474
+        - {{ tpl . $ | quote }} #https://stackoverflow.com/a/67815474
         {{- end }}
       secretName: {{ tpl .secretName $ }}
     {{- end }}
   {{- end }}
   rules:
-    - host: {{ tpl .Values.frontend.ingress.host . | quote}}
+    - host: {{ tpl .Values.frontend.ingress.host . | quote }}
       http:
         paths:
           - path: /
