@@ -1,5 +1,5 @@
 ---
-name: Deploy Prod (Silver)
+name: Deploy Uat (Silver)
 
 on:
   workflow_dispatch:
@@ -27,16 +27,13 @@ on:
         required: false
         type: string
 jobs:
-  deploy-silver-prod:
-    name: Deploy (prod, tag=${{ inputs.tag }})
+  deploys-silver-uat:
+    name: Deploys (${{ github.event.number }})
     uses: ./.github/workflows/.deployer.yml
     secrets: inherit
     with:
-      environment: silver-prod
+      environment: silver-uat
       tag: ${{ inputs.tag }}
       params:
         --set global.domain="apps.silver.devops.gov.bc.ca"
-        --set frontend.deploymentStrategy=RollingUpdate
-        --set global.autoscaling=true
-        --set frontend.pdb.enabled=false
         ${{ inputs.params }}

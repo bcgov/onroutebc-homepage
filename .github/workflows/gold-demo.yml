@@ -1,5 +1,5 @@
 ---
-name: Deploy Prod (Silver)
+name: Deploy Demo (Gold)
 
 on:
   workflow_dispatch:
@@ -27,16 +27,27 @@ on:
         required: false
         type: string
 jobs:
-  deploy-silver-prod:
-    name: Deploy (prod, tag=${{ inputs.tag }})
+  deploys-gold-demo:
+    name: Deploys (${{ github.event.number }})
     uses: ./.github/workflows/.deployer.yml
     secrets: inherit
     with:
-      environment: silver-prod
+      environment: gold-demo
       tag: ${{ inputs.tag }}
       params:
-        --set global.domain="apps.silver.devops.gov.bc.ca"
-        --set frontend.deploymentStrategy=RollingUpdate
-        --set global.autoscaling=true
-        --set frontend.pdb.enabled=false
+        --set frontend.ingress.host="demo.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="demo-tls"
         ${{ inputs.params }}
+
+  deploys-golddr-demo:
+    name: Deploys (${{ github.event.number }})
+    uses: ./.github/workflows/.deployer.yml
+    secrets: inherit
+    with:
+      environment: golddr-demo
+      tag: ${{ inputs.tag }}
+      params:
+        --set frontend.ingress.host="demo.onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="demo-tls"
+        ${{ inputs.params }} 
+

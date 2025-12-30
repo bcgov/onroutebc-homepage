@@ -33,10 +33,10 @@ jobs:
     secrets: inherit
     with:
       environment: gold-prod
-      db_user: app
       tag: ${{ inputs.tag }}
       params:
-        --set global.domain="apps.gold.devops.gov.bc.ca"
+        --set frontend.ingress.host="onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="prod-tls"
         --set frontend.deploymentStrategy=RollingUpdate
         --set global.autoscaling=true
         --set frontend.pdb.enabled=false
@@ -48,10 +48,10 @@ jobs:
     secrets: inherit
     with:
       environment: golddr-prod
-      db_user: app
       tag: ${{ inputs.tag }}
       params:
-        --set global.domain="apps.golddr.devops.gov.bc.ca"
+        --set frontend.ingress.host="onroutebc.gov.bc.ca"
+        --set frontend.ingress.tls[0].secretName="prod-tls"
         --set frontend.deploymentStrategy=RollingUpdate
         --set global.autoscaling=true
         --set frontend.pdb.enabled=false

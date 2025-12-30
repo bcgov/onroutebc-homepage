@@ -13,8 +13,18 @@ metadata:
   {{- end }}
 spec:
   ingressClassName: openshift-default
+  {{- if and .Values.frontend.ingress .Values.frontend.ingress.tls }}
+  tls:
+    {{- range .Values.frontend.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ tpl . $ | quote }} #https://stackoverflow.com/a/67815474
+        {{- end }}
+      secretName: {{ tpl .secretName $ }}
+    {{- end }}
+  {{- end }}
   rules:
-    - host: {{ include "frontend.fullname" . }}.{{ .Values.global.domain }}
+    - host: {{ tpl .Values.frontend.ingress.host . | quote }}
       http:
         paths:
           - path: /
