@@ -1,13 +1,6 @@
 name: Merge
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - '*.md'
-      - '.github/**'
-      - '.github/graphics/**'
-      - '!.github/workflows/**'
   workflow_dispatch:
     inputs:
       tag:

@@ -1,0 +1,39 @@
+---
+name: Deploy Test (CLAB)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+  workflow_call:
+    inputs:
+      tag:
+        description: "Image tag to deploy"
+        required: false
+        type: string
+        default: "latest"
+      params:
+        description: 'Extra parameters to pass to helm upgrade'
+        default: ''
+        required: false
+        type: string
+jobs:
+  deploy-clab-test:
+    name: Deploy (test, tag=${{ inputs.tag }})
+    uses: ./.github/workflows/.deployer.yml
+    secrets: inherit
+    with:
+      environment: clab-test
+      tag: ${{ inputs.tag }}
+      params: 
+        --set global.domain="apps.clab.devops.gov.bc.ca"
+        ${{ inputs.params }}
