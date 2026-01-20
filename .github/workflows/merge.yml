@@ -59,28 +59,3 @@ jobs:
           target: ${{ needs.vars.outputs.tag }}
           tags: test
   
-  deploy-clab-prod:
-    name: Deploy (prod, tag=${{ needs.vars.outputs.tag }})
-    needs: [vars, deploy-clab-test]
-    uses: ./.github/workflows/clab-prod.yml
-    secrets: inherit
-    with:
-      tag: ${{ needs.vars.outputs.tag }}
-  
-  promote-prod:
-    name: Promote Images
-    needs: [vars, deploy-clab-prod]
-    runs-on: ubuntu-24.04
-    permissions:
-      packages: write
-    strategy:
-      matrix:
-        package: [ frontend ]
-    timeout-minutes: 1
-    steps:
-      - uses: shrink/actions-docker-registry-tag@v4
-        with:
-          registry: ghcr.io
-          repository: ${{ github.repository }}/${{ matrix.package }}
-          target: ${{ needs.vars.outputs.tag }}
-          tags: prod
