@@ -85,7 +85,7 @@ permissions: {}
 
 jobs:
   deploy:
-    name: Stack
+    name: Helm Deploy (${{ inputs.environment }})
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-24.04
     outputs:
@@ -97,7 +97,7 @@ jobs:
         id: pr
         uses: bcgov/action-get-pr@21f9351425cd55a98e869ee28919a512aa30647d # v0.0.1
 
-      - name: Derive tier
+      - name: Extract tier
         id: tier
         run: |
           fullenv="${{ inputs.environment }}"
