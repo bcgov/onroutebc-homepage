@@ -43,7 +43,7 @@ jobs:
  
   promote-test:
     name: Promote Images
-    needs: [vars, deploy-clab-test]
+    needs: [vars]
     runs-on: ubuntu-24.04
     permissions:
       packages: write
