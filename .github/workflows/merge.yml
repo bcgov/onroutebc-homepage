@@ -33,13 +33,13 @@ jobs:
         run: echo "tag=${{ inputs.tag || steps.pr.outputs.pr }}" >> $GITHUB_OUTPUT
 
   # https://github.com/bcgov/quickstart-openshift-helpers
-  deploy-clab-test:
-    name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
-    needs: [vars]
-    uses: ./.github/workflows/clab-test.yml
-    secrets: inherit
-    with:
-      tag: ${{ needs.vars.outputs.tag }}
+#  deploy-clab-test:
+#    name: Deploy (test, tag=${{ needs.vars.outputs.tag }})
+#    needs: [vars]
+#    uses: ./.github/workflows/clab-test.yml
+#    secrets: inherit
+#    with:
+#      tag: ${{ needs.vars.outputs.tag }}
  
   promote-test:
     name: Promote Images
