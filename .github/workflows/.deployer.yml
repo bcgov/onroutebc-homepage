@@ -100,8 +100,8 @@ jobs:
       - name: Derive tier
         id: tier
         run: |
-          envtier="${{ inputs.environment }}"
-          tier="${envtier##*-}"
+          # envtier="${{ inputs.environment }}"
+          tier="${${{ inputs.environment }}##*-}"
           echo "tier=$tier" >> "$GITHUB_OUTPUT"
 
       - id: vars
