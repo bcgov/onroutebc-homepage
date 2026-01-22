@@ -46,9 +46,9 @@ spec:
             - name: LOG_LEVEL
               value: "info"
             - name: PUBLIC_API_URL
-              value: 'https://{{regexReplaceAll "-homepage-(silver|gold)" (printf "%s.%s" (include "frontend.fullname" .) .Values.global.domain) ""}}'
+              value: 'https://{{regexReplaceAll "-homepage" (printf "%s.%s" (include "frontend.fullname" .) .Values.global.domain) ""}}'
             - name: DASHBOARD_URL
-              value: 'https://{{regexReplaceAll "-homepage-(silver|gold)" (printf "%s.%s" (include "frontend.fullname" .) .Values.global.domain) ""}}'
+              value: 'https://{{regexReplaceAll "-homepage" (printf "%s.%s" (include "frontend.fullname" .) .Values.global.domain) ""}}'
           ports:
             - name: http
               containerPort: 3000
