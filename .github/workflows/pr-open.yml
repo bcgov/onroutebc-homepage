@@ -9,16 +9,18 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # https://github.com/bcgov-nr/action-builder-ghcr
+  # https://github.com/bcgov/action-builder-ghcr
   builds:
     name: Builds
+    permissions:
+      packages: write
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        package: [ frontend ]
+        package: [frontend]
     timeout-minutes: 10
     steps:
-      - uses: bcgov-nr/action-builder-ghcr@v4.2.1
+      - uses: bcgov/action-builder-ghcr@v4.2.1
         with:
           package: ${{ matrix.package }}
           tags: ${{ github.event.number }}
