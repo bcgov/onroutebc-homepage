@@ -39,4 +39,5 @@ jobs:
         --set frontend.deploymentStrategy=RollingUpdate
         --set global.autoscaling=true
         --set frontend.pdb.enabled=false
+        --set frontend.ingress.tls=false
         ${{ inputs.params }}
