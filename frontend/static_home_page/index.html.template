@@ -58,9 +58,7 @@
     <link rel="preload" as="image" href="./img/hero-sm.webp" />
 
     <!-- Notification Script -->
-    <script
-      src="./notification.js" defer>
-    </script>
+    <script src="./notification.js" defer></script>
 
     <title>onRouteBC - Home</title>
   </head>
@@ -115,10 +113,11 @@
                 </div>
                 <div class="permit-overview__content box-content">
                   <p>
-                    The Ministry of Transportation and Transit's
-                    commercial vehicle permitting system is transitioning to a
-                    new system called onRouteBC. The first phase of onRouteBC
-                    includes support for Term Oversize and Term Overweight
+                    The Ministry of Transportation and Transit's commercial
+                    vehicle permitting system is transitioning to a new system
+                    called onRouteBC. The current phase of onRouteBC includes
+                    support for Term Oversize, Term Overweight, Non-Resident
+                    Licensing, Non-Resident Insurance, and Motive Fuel User
                     permits, payable by credit card only. Over time onRouteBC
                     will offer more permit types and payment methods. During
                     transition, permits that are not available in onRouteBC
@@ -129,7 +128,7 @@
                 <div>
                   <div class="box-flex">
                     <section class="box-content term-oversize">
-                      <h3>Term Oversize and Term Overweight Permits</h3>
+                      <h3>Term, Non-Resident and Motive Fuel Permits</h3>
                       <a
                         role="button"
                         class="btn btn--blue"
@@ -138,7 +137,8 @@
                         Log into onRouteBC
                       </a>
                       <p>
-                        Login with your Basic BCeID or your Business BCeID and pay online with your credit card.
+                        Login with your Basic BCeID or your Business BCeID and
+                        pay online with your credit card.
                       </p>
                     </section>
                     <section class="box-content other-permits">
@@ -337,14 +337,14 @@
                 <div class="public-sector__content box-content">
                   <h3>Demonstration videos</h3>
                   <a
-                  href="https://www.youtube.com/playlist?list=PLKHNpQ_j-IWH5w_nfGspAZ4XIjgidTJbu"
-                  class="link"
-                  target="_blank"
-                  id=""
-                  >onRouteBC - YouTube
+                    href="https://www.youtube.com/playlist?list=PLKHNpQ_j-IWH5w_nfGspAZ4XIjgidTJbu"
+                    class="link"
+                    target="_blank"
+                    id=""
+                    >onRouteBC - YouTube
                   </a>
                 </div>
-              </section>              
+              </section>
             </div>
           </div>
         </div>
