@@ -36,4 +36,5 @@ jobs:
       tag: ${{ inputs.tag }}
       params: 
         --set global.domain="apps.silver.devops.gov.bc.ca"
+        --set frontend.ingress.tls=false
         ${{ inputs.params }}
