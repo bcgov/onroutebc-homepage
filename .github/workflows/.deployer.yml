@@ -85,7 +85,7 @@ permissions: {}
 
 jobs:
   deploy:
-    name: Stack
+    name: Helm Deploy (${{ inputs.environment }})
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-24.04
     outputs:
@@ -97,6 +97,15 @@ jobs:
         id: pr
         uses: bcgov/action-get-pr@21f9351425cd55a98e869ee28919a512aa30647d # v0.0.1
 
+      - name: Extract tier
+        env:
+          FULLENV: ${{ inputs.environment }}
+        id: tier
+        run: |
+          # Split the environment (i.e. "silver-test") into "cluster" and "tier".
+          tier="${FULLENV##*-}"
+          echo "tier=$tier" >> "$GITHUB_OUTPUT"
+
       - id: vars
         run: |
           # Vars: tag and release
@@ -105,7 +114,7 @@ jobs:
           tag=${{ inputs.tag || steps.pr.outputs.pr }}
 
           # Release name includes run numbers to ensure uniqueness
-          release=${{ github.event.repository.name }}-${{ inputs.environment || steps.pr.outputs.pr || inputs.tag }}
+          release=${{ github.event.repository.name }}-${{ steps.tier.outputs.tier || steps.pr.outputs.pr || inputs.tag }}
           
           # version, to support helm packaging for non-pr based releases (workflow_dispatch). default to 1.0.0+github run number
           version=1.0.0+${{ github.run_number }}
