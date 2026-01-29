@@ -66,7 +66,7 @@ frontend:
       - hosts:
         - "{{tpl .Values.frontend.ingress.host .}}"
         secretName: "{{regexFind \"(dev|test|demo|prod)\" .Release.Name}}-tls"
-    host: "{{.Release.Name}}.{{.Values.global.domain}}"
+    host: "{{.Release.Name}}-frontend.{{.Values.global.domain}}"
   pdb:
     enabled: false # enable it in PRODUCTION for having pod disruption budget.
     minAvailable: 1 # the minimum number of pods that must be available during the disruption budget.
