@@ -33,7 +33,7 @@ jobs:
       - name: PR Number
         if: ${{ ! inputs.tag }}
         id: pr
-        uses: bcgov-nr/action-get-pr@v0.0.1
+        uses: bcgov/action-get-pr@v0.1.0
 
       - name: Set Tag
         id: tag
