@@ -113,33 +113,36 @@
                 </div>
                 <div class="permit-overview__content box-content">
                   <p>
-                    The Ministry of Transportation and Transit's commercial
+                    The Ministry of Transportation and Transit’s commercial
                     vehicle permitting system is transitioning to a new system
-                    called onRouteBC. The current phase of onRouteBC includes
-                    support for Term Oversize, Term Overweight, Non-Resident
-                    Licensing, Non-Resident Insurance, and Motive Fuel User
-                    permits, payable by credit card only. Over time onRouteBC
-                    will offer more permit types and payment methods. During
-                    transition, permits that are not available in onRouteBC
-                    continue to be available from the existing system by
-                    contacting the Provincial Permit Center.
+                    called onRouteBC. Over time onRouteBC will offer more permit
+                    types and payment methods. During this transition, permits
+                    that are not available in onRouteBC continue to be available
+                    from the existing system by contacting the Provincial Permit
+                    Center.
                   </p>
                 </div>
                 <div>
                   <div class="box-flex">
                     <section class="box-content term-oversize">
-                      <h3>Term, Non-Resident and Motive Fuel Permits</h3>
+                      <h3>
+                        Log in using your BCeID and pay online with your credit
+                        card.
+                      </h3>
+
+                      <p>
+                        <strong>Permit Types:</strong>
+                        Term Oversize, Term Overweight, Single Trip Oversize,
+                        Non-Resident and Motive Fuel Permits
+                      </p>
+                      <br />
                       <a
                         role="button"
                         class="btn btn--blue"
                         href="${DASHBOARD_URL}/?idpHint=bceidbusiness"
                       >
-                        Log into onRouteBC
+                        Log in to onRouteBC
                       </a>
-                      <p>
-                        Login with your Basic BCeID or your Business BCeID and
-                        pay online with your credit card.
-                      </p>
                     </section>
                     <section class="box-content other-permits">
                       <h3>Other permit types and payment methods</h3>
@@ -262,9 +265,9 @@
                       <p class="contact__label">Hours</p>
                       <div class="contact__row">
                         <p>
-                          6am to 10pm PDT (Apr. - Oct.)
-                          <br />5am to 9pm PST (Nov. - Mar.) <br />Seven days a
-                          week
+                          6:00 AM to 6:00 PM PDT
+                          <br />
+                          Seven days a week
                         </p>
                       </div>
                       <div class="contact__row">
@@ -325,7 +328,7 @@
                       class="link"
                       target="_blank"
                       id=""
-                      >Commercial Vehicle Routing Tools</a
+                      >Commercial Vehicle Routing Tool</a
                     >
                   </p>
                 </div>
